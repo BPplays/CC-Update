@@ -1,14 +1,17 @@
 --Version 7
 
 updateloop = 0
-updateargs = {...} 
+local tempargs = {...} 
+local updateargs = tempargs[1]
 --udlstbl = {"updateprogram", "pastelink", "udloc", "startupls", "strtprg"}
+os.loadAPI("AndysPrograms/api/git/git")
 
-updateprogram = updateargs[1]
-pastelink = updateargs[2]
-udloc = updateargs[3]
-startupls = updateargs[4]
-strtprg = updateargs[5]
+local updateprogram = updateargs[1]
+local pastelink = updateargs[2]
+local udloc = updateargs[3]
+local startupls = updateargs[4]
+local strtprg = updateargs[5]
+local repo = updateargs[2]
 os.loadAPI("AndysPrograms/api/pastebin_silent/ps")
 if errhnd ~= 1 then
     function printud()
@@ -42,7 +45,8 @@ if errhnd ~= 1 then
                 --shell.run("delete",updateprogram.."new") 
                 --printud()
             end
-            ps.get({pastelink,updateprogram.."new",udloc})
+            -- ps.get({pastelink,updateprogram.."new",udloc})
+            git.get(updateargs)
             --shell.run("AndysPrograms/api/pastebin_silent/ps","get",pastelink,updateprogram.."new")
             printud()
             --print(udloc.."/"..updateprogram.."new")
