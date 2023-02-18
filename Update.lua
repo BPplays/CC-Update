@@ -6,9 +6,9 @@ function update(tempargs)
     --udlstbl = {"updateprogram", "pastelink", "udloc", "startupls", "strtprg"}
     os.loadAPI("AndysPrograms/api/git/git")
 
-    local updateprogram = updateargs[1]
+    local updateprogram = updateargs[5]
     local pastelink = updateargs[2]
-    local udloc = updateargs[3]
+    local udloc = updateargs[6]
     local startupls = updateargs[4]
     local strtprg = updateargs[5]
     local repo = updateargs[2]
