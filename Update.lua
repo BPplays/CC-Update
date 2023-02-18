@@ -12,7 +12,7 @@ local udloc = updateargs[3]
 local startupls = updateargs[4]
 local strtprg = updateargs[5]
 local repo = updateargs[2]
-os.loadAPI("AndysPrograms/api/pastebin_silent/ps")
+-- os.loadAPI("AndysPrograms/api/pastebin_silent/ps")
 if errhnd ~= 1 then
     function printud()
         -- term.clear()
