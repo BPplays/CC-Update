@@ -48,7 +48,7 @@ function update(tempargs)
                 -- ps.get({pastelink,updateprogram.."new",udloc})
                 if git.get(updateargs) then
                 else
-                    print("wrong git: "..table.concat(updateargs,", "))
+                    -- print("wrong git: "..table.concat(updateargs,", "))
                 end
                 --shell.run("AndysPrograms/api/pastebin_silent/ps","get",pastelink,updateprogram.."new")
                 printud()
