@@ -96,11 +96,11 @@ function update(tempargs)
             end
             --print(startupls)
             --sleep(10)
-            if startupls ~= "none" and startupls ~= nil then
-                local stu = fs.open("startup.lua", "w")
-                stu.write(startupls)
-                stu.close()
-            end
+            -- if startupls ~= "none" and startupls ~= nil then
+            --     local stu = fs.open("startup.lua", "w")
+            --     stu.write(startupls)
+            --     stu.close()
+            -- end
             if strtprg == nil and strtprg == "no" and strtprg == "none" then
             else
 
