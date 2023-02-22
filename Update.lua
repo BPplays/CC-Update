@@ -1,7 +1,7 @@
 --Version 7.1
 function update(tempargs_base)
 
-
+    local done_file = false
     local function update_internal(tempargs)
         updateloop = 0
         --local tempargs = {...} 
@@ -69,11 +69,13 @@ function update(tempargs_base)
                         -- shell.run("rename",updateprogram.."new",updateprogram)
                         fs.move(udloc.."/"..updateprogram.."new",udloc.."/"..updateprogram)
                         if fs.exists(udloc.."/"..updateprogram) then
+                            done_file = true
                             break
                         end
                     end
                     if fs.exists(udloc.."/"..updateprogram) then
                         if updateloop > 20 then
+                            done_file = true
                             break
                         end
                     end
@@ -82,6 +84,7 @@ function update(tempargs_base)
                             --shell.run("rename",updateprogram.."old",updateprogram)
                             fs.move(udloc.."/"..updateprogram.."old",udloc.."/"..updateprogram)
                             if fs.exists(udloc.."/"..updateprogram) then
+                                done_file = true
                                 break
                             end
                         end
@@ -127,6 +130,9 @@ function update(tempargs_base)
     local function timeout_check()
         while os.epoch() < prev_time + timeout_time_output do
             sleep(0.2)
+            if done_file == true then
+                break
+            end
         end
     end
     local loops = 1
@@ -137,6 +143,9 @@ function update(tempargs_base)
         loops = loops + 1
         if loops <= 5 then
             timeout_time = timeout_time_base * loops
+        end
+        if done_file == true then
+            break
         end
     end
 
