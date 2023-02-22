@@ -88,6 +88,7 @@ function update(tempargs_base)
                             fs.move(udloc.."/"..updateprogram.."old",udloc.."/"..updateprogram)
                             if fs.exists(udloc.."/"..updateprogram) then
                                 done_file = true
+                                done_try_update = true
                                 break
                             end
                         end
