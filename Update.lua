@@ -2,6 +2,7 @@
 function update(tempargs_base)
 
     local done_file = false
+    local done_try_update = false
     local function update_internal(tempargs)
         updateloop = 0
         --local tempargs = {...} 
@@ -37,7 +38,7 @@ function update(tempargs_base)
                     table.insert(progargs, updateargs[i])
                 end
             end
-            while true do
+            while done_try_update == false do
                 if errhnd ~= 1 then
                     if fs.isDir(udloc) == false then
                         fs.makeDir(udloc)
@@ -70,12 +71,14 @@ function update(tempargs_base)
                         fs.move(udloc.."/"..updateprogram.."new",udloc.."/"..updateprogram)
                         if fs.exists(udloc.."/"..updateprogram) then
                             done_file = true
+                            done_try_update = true
                             break
                         end
                     end
                     if fs.exists(udloc.."/"..updateprogram) then
                         if updateloop > 20 then
                             done_file = true
+                            done_try_update = true
                             break
                         end
                     end
@@ -134,15 +137,19 @@ function update(tempargs_base)
                 break
             end
         end
+        done_try_update = true
     end
     local loops = 1
-    while true do
+    while done_file == false do
         prev_time = os.epoch()
         timeout_time_output = timeout_time * epoch_mul
+        done_try_update = false
         parallel.waitForAny(run_update,timeout_check)
         loops = loops + 1
         if loops <= 5 then
             timeout_time = timeout_time_base * loops
+        else
+            -- print("TimeOut")
         end
         if done_file == true then
             break
