@@ -76,14 +76,14 @@ function update(tempargs_base)
                         end
                     end
                     if fs.exists(udloc.."/"..updateprogram) then
-                        if updateloop > 7 then
+                        if updateloop > 6 then
                             done_file = true
                             done_try_update = true
                             break
                         end
                     end
                     if fs.exists(udloc.."/"..updateprogram.."old") then
-                        if updateloop > 8 then
+                        if updateloop > 7 then
                             --shell.run("rename",updateprogram.."old",updateprogram)
                             fs.move(udloc.."/"..updateprogram.."old",udloc.."/"..updateprogram)
                             if fs.exists(udloc.."/"..updateprogram) then
